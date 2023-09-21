@@ -1,4 +1,4 @@
-package com.example.subastasquindio.Model;
+package com.example.subastasquindio.model;
 
 public class Persona {
 
