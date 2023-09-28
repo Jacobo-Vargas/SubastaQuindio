@@ -4,13 +4,31 @@ public class Usuario extends Persona{
 
     private String usuario;
     private String contrasenia;
+    private String correo;
+
+
+    public Usuario() {
+
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    @Override
+    public String getUsuario() {
+        return usuario;
+    }
+
 
     public Usuario() {
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
+
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
