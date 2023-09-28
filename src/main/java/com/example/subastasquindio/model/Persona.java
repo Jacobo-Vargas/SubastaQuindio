@@ -5,10 +5,11 @@ public class Persona {
     private String nombre;
     private String apellido;
     private String cedula;
+    private int edad;
     private String telefono;
-    private String direccion;
-    private String correo;
-    private String fechaNacimiento;
+
+    private Usuario usuario;
+
 
     public Persona() {
     }
@@ -45,27 +46,11 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 }

@@ -1,27 +1,30 @@
 package com.example.subastasquindio.model;
 
+import com.example.subastasquindio.exceptions.UsuarioException;
+import com.example.subastasquindio.model.services.ISubastaService;
+
 import java.util.ArrayList;
 
-public class Subasta {
+public class Subasta implements ISubastaService {
 
-    private final ArrayList<Usuario> listaUsuarios;
-    private final ArrayList<Articulos> listaArticulos;
+    private  ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+    private  ArrayList<Comprador> listaCompradores = new ArrayList<>();
+    private ArrayList<Anunciante> listaAnunciantes = new ArrayList<>();
+
     protected Subasta() {
-        listaArticulos = new ArrayList<>();
-        listaUsuarios = new ArrayList<>();
     }
 
 
     /*
     Registrar un usuario
      */
-
-    public boolean registrarUsuario(String cedula){
+    @Override
+    public boolean registrarUsuario(String cedula) {
         Usuario u = obtenerUsuario(cedula);
-        if(u != null){
+        if (u != null) {
             listaUsuarios.add(u);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -29,13 +32,13 @@ public class Subasta {
     /*
     Eliminar usuario
      */
-
-    public boolean eliminarUsuario(String cedula){
+    @Override
+    public boolean eliminarUsuario(String cedula) {
         Usuario u = obtenerUsuario(cedula);
-        if(u != null){
+        if (u != null) {
             listaUsuarios.remove(u);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -43,11 +46,11 @@ public class Subasta {
     /*
     funcion para obtener un usuario a partir de su cedula
      */
-
-    public Usuario obtenerUsuario(String cedula){
+    @Override
+    public Usuario obtenerUsuario(String cedula) {
         Usuario usuarioEncontrado = null;
-        for (Usuario u: listaUsuarios) {
-            if(u.getCedula().equals(cedula)){
+        for (Usuario u : listaUsuarios) {
+            if (u.getCedula().equals(cedula)) {
                 usuarioEncontrado = u;
             }
         }
@@ -58,7 +61,23 @@ public class Subasta {
         return listaUsuarios;
     }
 
-    public ArrayList<Articulos> getListaArticulos() {
-        return listaArticulos;
+    public ArrayList<Comprador> getListaCompradores() {
+        return listaCompradores;
+    }
+
+    public ArrayList<Anunciante> getListaAnunciantes() {
+        return listaAnunciantes;
+    }
+
+    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
+    public void setListaCompradores(ArrayList<Comprador> listaCompradores) {
+        this.listaCompradores = listaCompradores;
+    }
+
+    public void setListaAnunciantes(ArrayList<Anunciante> listaAnunciantes) {
+        this.listaAnunciantes = listaAnunciantes;
     }
 }
