@@ -30,23 +30,24 @@ public class Anunciante extends Persona implements IProductoService {
     }
 
     @Override
-    public boolean registrarProducto(String nombre, TipoArticulo t) throws ProductoException {
+    public boolean registrarProducto(String id,String nombre, TipoArticulo t) throws ProductoException {
         Producto p = new Producto();
+        p.setId(id);
         p.setNombre(nombre);
         p.setTipoArticulo(t);
-        if (obtenerProducto(nombre) != null) {
+        if (obtenerProducto(id) != null) {
             listaProductos.add(p);
             return true;
         } else {
-            throw new ProductoException("El producto " + nombre + " ya existe.");
+            throw new ProductoException("El producto " + id + " ya existe.");
         }
     }
 
     @Override
-    public boolean actualizarProducto(String nombre,Producto producto) throws ProductoException {
-        Producto pEncontrado = obtenerProducto(nombre);
+    public boolean actualizarProducto(String id,Producto producto) throws ProductoException {
+        Producto pEncontrado = obtenerProducto(id);
         if(pEncontrado == null){
-            throw new ProductoException("El producto "+ nombre +" no existe.");
+            throw new ProductoException("El producto "+ id +" no existe.");
         }else{
             pEncontrado.setNombre(producto.getNombre());
             pEncontrado.setTipoArticulo(producto.getTipoArticulo());
@@ -55,10 +56,10 @@ public class Anunciante extends Persona implements IProductoService {
     }
 
     @Override
-    public Producto obtenerProducto(String nombre) throws ProductoException {
+    public Producto obtenerProducto(String id) throws ProductoException {
         Producto productoEncontrado = null;
         for (Producto p : listaProductos) {
-            if (p.getNombre().equals(nombre)) {
+            if (p.getNombre().equals(id)) {
                 productoEncontrado = p;
                 break;
             }
@@ -68,13 +69,13 @@ public class Anunciante extends Persona implements IProductoService {
     }
 
     @Override
-    public boolean eliminarProducto(String nombre) throws ProductoException {
-        Producto p = obtenerProducto(nombre);
+    public boolean eliminarProducto(String id) throws ProductoException {
+        Producto p = obtenerProducto(id);
         if (p != null) {
             listaProductos.remove(p);
             return true;
         } else {
-            throw new ProductoException("El producto " + nombre + " no existe.");
+            throw new ProductoException("El producto " + id + " no existe.");
 
         }
     }

@@ -19,15 +19,9 @@ public class Usuario extends Persona{
         this.correo = correo;
     }
 
-    @Override
     public String getUsuario() {
         return usuario;
     }
-
-
-    public Usuario() {
-    }
-
 
 
     public void setUsuario(String usuario) {

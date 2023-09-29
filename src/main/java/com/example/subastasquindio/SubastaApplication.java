@@ -13,7 +13,7 @@ public class SubastaApplication extends Application {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(SubastaApplication.class.getResource("SubastaView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 750, 500);
             stage.setTitle("Hello!");
             stage.setScene(scene);
             stage.show();
