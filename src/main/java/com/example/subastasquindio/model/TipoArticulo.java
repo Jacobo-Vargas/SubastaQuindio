@@ -6,5 +6,7 @@ public enum TipoArticulo {
     HOGAR,
     DEPORTES,
     VEHICULO,
-    BIENRAIZ
+    BIENRAIZ,
+
+    CASAS,
 }

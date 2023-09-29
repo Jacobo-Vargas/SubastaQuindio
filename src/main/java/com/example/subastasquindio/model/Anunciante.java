@@ -35,7 +35,7 @@ public class Anunciante extends Persona implements IProductoService {
         p.setId(id);
         p.setNombre(nombre);
         p.setTipoArticulo(t);
-        if (obtenerProducto(id) != null) {
+        if (obtenerProducto(id) == null) {
             listaProductos.add(p);
             return true;
         } else {
