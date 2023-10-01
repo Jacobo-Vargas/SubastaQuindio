@@ -1,5 +1,6 @@
 package com.example.subastasquindio.model;
 
+import com.example.subastasquindio.exceptions.ProductoException;
 import com.example.subastasquindio.exceptions.UsuarioException;
 import com.example.subastasquindio.model.services.ISubastaService;
 
@@ -55,6 +56,36 @@ public class Subasta implements ISubastaService {
             }
         }
         return usuarioEncontrado;
+    }
+
+    @Override
+    public boolean registrarProducto(String id, String nombre, TipoArticulo t) throws ProductoException {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarProducto(String id, Producto producto) throws ProductoException {
+        return false;
+    }
+
+    @Override
+    public Producto obtenerProducto(String id) throws ProductoException {
+        Producto productoEcontrado=null;
+        for(int i=0;i<listaAnunciantes.size();i++){
+            for(int h=0;h<listaAnunciantes.get(i).getListaProductos().size();h++){
+                if(listaAnunciantes.get(h).getListaProductos().equals(id)){
+                    return productoEcontrado=listaAnunciantes.get(i).getListaProductos().get(h);
+                }
+            }
+        }
+        return productoEcontrado;
+
+
+    }
+
+    @Override
+    public boolean eliminarProducto(String id) throws ProductoException {
+        return false;
     }
 
     public ArrayList<Usuario> getListaUsuarios() {
