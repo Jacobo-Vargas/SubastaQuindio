@@ -33,12 +33,13 @@ public class Anunciante extends Persona implements IProductoService, IAnuncioSer
     }
 
     @Override
-    public boolean registrarProducto(Producto producto) throws ProductoException {
+    public boolean registrarProducto(Producto producto)  {
         if (obtenerProducto(producto.getId()) == null) {
             listaProductos.add(producto);
             return true;
         } else {
-            throw new ProductoException("El producto " + producto.getId() + " ya existe.");
+            return false;
+           // throw new ProductoException("El producto " + producto.getId() + " ya existe.");
         }
     }
 
@@ -55,7 +56,7 @@ public class Anunciante extends Persona implements IProductoService, IAnuncioSer
     }
 
     @Override
-    public Producto obtenerProducto(int id) throws ProductoException {
+    public Producto obtenerProducto(int id) {//throws ProductoException {
         Producto productoEncontrado = null;
         for (Producto p : listaProductos) {
             if (p.getId() == id) {

@@ -9,7 +9,7 @@ import com.example.subastasquindio.model.TipoArticulo;
 public class SubastaUtils {
 
 
-    public static Subasta inicializarDatos() throws ProductoException {
+    public static Subasta inicializarDatos() {
 
         Subasta subasta = new Subasta();
         Anunciante a = new Anunciante();

@@ -23,14 +23,14 @@ public class ModelFactoryController implements IModelFactoryService {
 
 
     private static class SingletonHolder {
-        private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
+        private final static ModelFactoryController eINSTANCE = new ModelFactoryController();;
     }
 
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eINSTANCE;
     }
 
-    public ModelFactoryController() throws ProductoException {
+    public ModelFactoryController(){
         System.out.println("Invocando singleton");
         quemarDatos();
     }
@@ -42,7 +42,7 @@ public class ModelFactoryController implements IModelFactoryService {
     //---------------------------------- fin singleton -----------------------------------
 
     //-------------------------cargar datos----------------------
-    private void quemarDatos() throws ProductoException {
+    private void quemarDatos() {
         subasta = SubastaUtils.inicializarDatos();
         System.out.println(subasta.getListaAnunciantes());
     }
