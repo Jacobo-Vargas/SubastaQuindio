@@ -1,4 +1,4 @@
-package com.example.subastasquindio;
+package com.example.subastasquindio.viewController;
 
 import com.example.subastasquindio.model.Anuncio;
 import javafx.fxml.FXML;
@@ -7,9 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class HelloController {
+public class SubastaViewController {
     @FXML
     public ImageView imageV;
     @FXML
@@ -28,13 +27,13 @@ public class HelloController {
 
         // Llenar la lista de anuncios
         Anuncio a = new Anuncio();
-        a.setFoto("/Imagenes/reina.png");
+        a.setFoto( new Image("file:/Imagenes/reina.png"));
         a.setNombreAnunciante("jacobo");
         Anuncio b = new Anuncio();
-        b.setFoto("/Imagenes/reina.png");
+        b.setFoto(new Image("file:/Imagenes/reina.png"));
         b.setNombreAnunciante("juan");
         Anuncio c = new Anuncio();
-        c.setFoto("/Imagenes/tarjeta.png");
+        c.setFoto(new Image("file:/Imagenes/tarjeta.png"));
         c.setNombreAnunciante("nadie");
 
         anuncios.add(a);
@@ -61,7 +60,7 @@ public class HelloController {
     private void mostrarAnuncio(Anuncio anuncio) {
         lblNombre.setText(anuncio.getNombreAnunciante());
         lblDescripcion.setText(anuncio.getDescripcion());
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(anuncio.getFoto())));
+        Image image = anuncio.getFoto();
         imageV.setImage(image);
     }
 

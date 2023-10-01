@@ -7,21 +7,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.subastasquindio.ProductoController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.subastasquindio.viewController.ProductoViewController">
    <children>
       <Button fx:id="botonEliminar" layoutX="210.0" layoutY="163.0" mnemonicParsing="false" text="Eliminar" />
       <Button fx:id="botonBuscar" layoutX="102.0" layoutY="163.0" mnemonicParsing="false" text="Buscar" />
       <Button fx:id="botonActualizar" layoutX="422.0" layoutY="163.0" mnemonicParsing="false" text="Actualizar" />
       <Button fx:id="botonAgregar" layoutX="313.0" layoutY="163.0" mnemonicParsing="false" text="Agregar" />
-      <TableView layoutX="52.0" layoutY="200.0" prefHeight="200.0" prefWidth="495.0">
+      <TableView fx:id="tableViewProductos" layoutX="52.0" layoutY="200.0" prefHeight="200.0" prefWidth="495.0">
         <columns>
-          <TableColumn fx:id="tableColumnId" prefWidth="175.0" text="Id" />
-          <TableColumn fx:id="tableColumnTipoArticulo" minWidth="0.0" prefWidth="153.0" text="Tipo Articulo" />
-            <TableColumn fx:id="tableColumnNombre" prefWidth="161.0" text="Nombre" />
+          <TableColumn fx:id="tcID" prefWidth="175.0" text="Id" />
+          <TableColumn fx:id="tcTipoArticulo" minWidth="0.0" prefWidth="153.0" text="Tipo Articulo" />
+            <TableColumn fx:id="tcNombre" prefWidth="161.0" text="Nombre" />
         </columns>
       </TableView>
-      <TextField fx:id="textFieldIdProducto" layoutX="195.0" layoutY="88.0" promptText="Id producto" />
-      <TextField fx:id="textFieldNombre" layoutX="14.0" layoutY="88.0" promptText="Nombre" />
+      <TextField fx:id="txtID" layoutX="195.0" layoutY="88.0" promptText="Id producto" />
+      <TextField fx:id="txtNombre" layoutX="14.0" layoutY="88.0" promptText="Nombre" />
       <ComboBox fx:id="comboBoxTipoArticulo" layoutX="381.0" layoutY="88.0" prefWidth="150.0" promptText="Tipo articulo" />
    </children>
 </AnchorPane>

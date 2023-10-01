@@ -1,14 +1,20 @@
 package com.example.subastasquindio.model;
 
+import javafx.scene.image.Image;
+
+import java.time.LocalDate;
+
 public class Anuncio {
+
+    private String codigoAnuncio;
     private Producto producto;
     private String descripcion;
 
-    float valorInicial;
-    private String foto;
+    private float valorInicial;
+    private Image foto;
     private String nombreAnunciante;
-    private String fechaPublicacion;
-    private String fechaFinPublicacion;
+    private LocalDate fechaPublicacion;
+    private LocalDate fechaFinPublicacion;
 
     public Anuncio() {
     }
@@ -37,11 +43,11 @@ public class Anuncio {
         this.valorInicial = valorInicial;
     }
 
-    public String getFoto() {
+    public Image getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(Image foto) {
         this.foto = foto;
     }
 
@@ -53,19 +59,27 @@ public class Anuncio {
         this.nombreAnunciante = nombreAnunciante;
     }
 
-    public String getFechaPublicacion() {
+    public LocalDate getFechaPublicacion() {
         return fechaPublicacion;
     }
 
-    public void setFechaPublicacion(String fechaPublicacion) {
+    public void setFechaPublicacion(LocalDate fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public String getFechaFinPublicacion() {
+    public LocalDate getFechaFinPublicacion() {
         return fechaFinPublicacion;
     }
 
-    public void setFechaFinPublicacion(String fechaFinPublicacion) {
+    public void setFechaFinPublicacion(LocalDate fechaFinPublicacion) {
         this.fechaFinPublicacion = fechaFinPublicacion;
+    }
+
+    public String getCodigoAnuncio() {
+        return codigoAnuncio;
+    }
+
+    public void setCodigoAnuncio(String codigoAnuncio) {
+        this.codigoAnuncio = codigoAnuncio;
     }
 }

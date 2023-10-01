@@ -19,6 +19,7 @@
     <Tab text="Iniciar sesion">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="750.0" />
+        <fx:include source= "Producto.fxml"> </fx:include>
       </content>
     </Tab>
   </tabs>

@@ -1,11 +1,15 @@
 package com.example.subastasquindio.model;
 
 public class Producto {
-    private String id;
+
+    public static int contador = 0;
+
+    private int id;
     private TipoArticulo tipoArticulo;
     private String nombre;
 
     public Producto() {
+        this.id = ++contador;
     }
 
     public TipoArticulo getTipoArticulo() {
@@ -24,10 +28,19 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+
+    public static void setContador(int contador) {
+        Producto.contador = contador;
+    }
+
+    public static int getContador() {
+        return contador;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 }

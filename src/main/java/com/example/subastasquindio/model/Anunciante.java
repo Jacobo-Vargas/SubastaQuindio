@@ -1,14 +1,17 @@
 package com.example.subastasquindio.model;
 
 import com.example.subastasquindio.exceptions.ProductoException;
+import com.example.subastasquindio.model.services.IAnuncioService;
 import com.example.subastasquindio.model.services.IProductoService;
 
 import java.util.ArrayList;
 
-public class Anunciante extends Persona implements IProductoService {
+public class Anunciante extends Persona implements IProductoService, IAnuncioService {
 
     private ArrayList<Anuncio> listaAnuncios = new ArrayList<>();
     private ArrayList<Producto> listaProductos = new ArrayList<>();
+
+    private Usuario usuario;
 
     public Anunciante() {
     }
@@ -30,21 +33,17 @@ public class Anunciante extends Persona implements IProductoService {
     }
 
     @Override
-    public boolean registrarProducto(String id,String nombre, TipoArticulo t) throws ProductoException {
-        Producto p = new Producto();
-        p.setId(id);
-        p.setNombre(nombre);
-        p.setTipoArticulo(t);
-        if (obtenerProducto(id) == null) {
-            listaProductos.add(p);
+    public boolean registrarProducto(Producto producto) throws ProductoException {
+        if (obtenerProducto(producto.getId()) == null) {
+            listaProductos.add(producto);
             return true;
         } else {
-            throw new ProductoException("El producto " + id + " ya existe.");
+            throw new ProductoException("El producto " + producto.getId() + " ya existe.");
         }
     }
 
     @Override
-    public boolean actualizarProducto(String id,Producto producto) throws ProductoException {
+    public boolean actualizarProducto(int id,Producto producto) throws ProductoException {
         Producto pEncontrado = obtenerProducto(id);
         if(pEncontrado == null){
             throw new ProductoException("El producto "+ id +" no existe.");
@@ -56,10 +55,10 @@ public class Anunciante extends Persona implements IProductoService {
     }
 
     @Override
-    public Producto obtenerProducto(String id) throws ProductoException {
+    public Producto obtenerProducto(int id) throws ProductoException {
         Producto productoEncontrado = null;
         for (Producto p : listaProductos) {
-            if (p.getNombre().equals(id)) {
+            if (p.getId() == id) {
                 productoEncontrado = p;
                 break;
             }
@@ -69,7 +68,7 @@ public class Anunciante extends Persona implements IProductoService {
     }
 
     @Override
-    public boolean eliminarProducto(String id) throws ProductoException {
+    public boolean eliminarProducto(int id) throws ProductoException {
         Producto p = obtenerProducto(id);
         if (p != null) {
             listaProductos.remove(p);
@@ -78,5 +77,23 @@ public class Anunciante extends Persona implements IProductoService {
             throw new ProductoException("El producto " + id + " no existe.");
 
         }
+    }
+
+    @Override
+    public boolean productoExiste(int id) {
+        for (Producto p : listaProductos) {
+            if (p.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
