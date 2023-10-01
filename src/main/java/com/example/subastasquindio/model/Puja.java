@@ -1,11 +1,13 @@
 package com.example.subastasquindio.model;
 
+import java.time.LocalDate;
+
 public class Puja {
 
     private String direccion ;
     private String codigo;
-    private Double ofertaInicial;
-    private String fechaPuja;
+    private float ofertaInicial;
+    private LocalDate fechaPuja;
 
     public Puja() {
     }
@@ -26,15 +28,15 @@ public class Puja {
         this.codigo = codigo;
     }
 
-    public Double getOfertaInicial() {
+    public float getOfertaInicial() {
         return ofertaInicial;
     }
 
-    public void setOfertaInicial(Double ofertaInicial) {
+    public void setOfertaInicial(float ofertaInicial) {
         this.ofertaInicial = ofertaInicial;
     }
 
-    public String getFechaPuja() {
+    public LocalDate getFechaPuja() {
         return fechaPuja;
     }
 

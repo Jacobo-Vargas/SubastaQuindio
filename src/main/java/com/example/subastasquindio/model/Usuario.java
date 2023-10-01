@@ -1,8 +1,8 @@
 package com.example.subastasquindio.model;
 
-public class Usuario extends Persona{
+public class Usuario{
 
-    private String usuario;
+    private String user;
     private String contrasenia;
     private String correo;
 
@@ -19,13 +19,13 @@ public class Usuario extends Persona{
         this.correo = correo;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getUser() {
+        return user;
     }
 
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUser(String usuario) {
+        this.user = usuario;
     }
 
     public String getContrasenia() {

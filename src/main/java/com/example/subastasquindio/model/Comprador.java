@@ -6,6 +6,8 @@ public class Comprador extends Persona{
     private String direccion;
     private final ArrayList<Puja> listaPujas = new ArrayList<>();
 
+    private Usuario usuario;
+
     public Comprador() {
     }
 
@@ -21,4 +23,11 @@ public class Comprador extends Persona{
         return listaPujas;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

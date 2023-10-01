@@ -1,80 +1,46 @@
 package com.example.subastasquindio.model;
 
+import com.example.subastasquindio.exceptions.LogException;
 import com.example.subastasquindio.exceptions.ProductoException;
 import com.example.subastasquindio.exceptions.UsuarioException;
 import com.example.subastasquindio.model.services.ISubastaService;
 
+import java.lang.reflect.AnnotatedArrayType;
 import java.util.ArrayList;
 
 public class Subasta implements ISubastaService {
 
-    private  ArrayList<Usuario> listaUsuarios = new ArrayList<>();
-    private  ArrayList<Comprador> listaCompradores = new ArrayList<>();
+
+    private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+
+    private ArrayList<Anuncio> listaAnuncios = new ArrayList<>();
+    private ArrayList<Comprador> listaCompradores = new ArrayList<>();
     private ArrayList<Anunciante> listaAnunciantes = new ArrayList<>();
 
-    protected Subasta() {
+    public Subasta() {
     }
 
 
-    /*
-    Registrar un usuario
-     */
-    @Override
-    public boolean registrarUsuario(String cedula) {
-        Usuario u = obtenerUsuario(cedula);
-        if (u != null) {
-            listaUsuarios.add(u);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    /*
-    Eliminar usuario
-     */
+    //----------------------------------producto--------------------------------------------
     @Override
-    public boolean eliminarUsuario(String cedula) {
-        Usuario u = obtenerUsuario(cedula);
-        if (u != null) {
-            listaUsuarios.remove(u);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /*
-    funcion para obtener un usuario a partir de su cedula
-     */
-    @Override
-    public Usuario obtenerUsuario(String cedula) {
-        Usuario usuarioEncontrado = null;
-        for (Usuario u : listaUsuarios) {
-            if (u.getCedula().equals(cedula)) {
-                usuarioEncontrado = u;
-            }
-        }
-        return usuarioEncontrado;
-    }
-
-    @Override
-    public boolean registrarProducto(String id, String nombre, TipoArticulo t) throws ProductoException {
+    public boolean registrarProducto(int id, String nombre, TipoArticulo t) throws ProductoException {
         return false;
     }
 
     @Override
-    public boolean actualizarProducto(String id, Producto producto) throws ProductoException {
+    public boolean actualizarProducto(int id, Producto producto) throws ProductoException {
         return false;
     }
 
     @Override
-    public Producto obtenerProducto(String id) throws ProductoException {
-        Producto productoEcontrado=null;
-        for(int i=0;i<listaAnunciantes.size();i++){
-            for(int h=0;h<listaAnunciantes.get(i).getListaProductos().size();h++){
-                if(listaAnunciantes.get(h).getListaProductos().equals(id)){
-                    return productoEcontrado=listaAnunciantes.get(i).getListaProductos().get(h);
+    public Producto obtenerProducto(int id) throws ProductoException {
+        Producto productoEcontrado = null;
+        for (Anunciante anunciante : listaAnunciantes) {
+            for (Producto p : anunciante.getListaProductos()) {
+                if (p.getId() == id) {
+                    productoEcontrado = p;
+                    break;
                 }
             }
         }
@@ -84,10 +50,98 @@ public class Subasta implements ISubastaService {
     }
 
     @Override
-    public boolean eliminarProducto(String id) throws ProductoException {
+    public boolean eliminarProducto(int id) throws ProductoException {
         return false;
     }
 
+    @Override
+    public boolean productoExiste(int id) throws ProductoException {
+        if (obtenerProducto(id) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+//------------------------------anunciante-----------------------------------------
+    @Override
+    public boolean registrarAnunciante(Anunciante anunciante) {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarAnunciante(String nombre, String apellido, String cedula, int edad, String telefono) {
+        return false;
+    }
+
+    @Override
+    public Anunciante obtenerAnunciante(String cedula) {
+        Anunciante aEncontrado = null;
+        for (Anunciante a:listaAnunciantes) {
+            if(a.getCedula().equals(cedula)){
+                aEncontrado = a;
+                break;
+            }
+        }
+        return aEncontrado;
+    }
+
+    @Override
+    public boolean eliminarAnunciante(String cedula) {
+        return false;
+    }
+
+    //----------------------------------comprador-----------------------------
+
+    @Override
+    public boolean registrarComprador(Anunciante anunciante) {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarComprador(String nombre, String apellido, String cedula, int edad, String telefono) {
+        return false;
+    }
+
+    @Override
+    public Comprador obtenerComprador(String cedula) {
+        return null;
+    }
+
+    @Override
+    public boolean eliminarComprador(String cedula) {
+        return false;
+    }
+
+
+    //---------------------login-----------------------//
+
+    public boolean verificarAccesoAnunciante(String cedula, String contrasenia) throws LogException {
+        boolean loginSuccesfully = false;
+
+        for (Anunciante anunciante : listaAnunciantes) {
+            if (anunciante.getUsuario().getUser().equals(cedula) && anunciante.getUsuario().getContrasenia().equals(contrasenia)) {
+                loginSuccesfully = true;
+
+                break;
+            }
+        }
+        return loginSuccesfully;
+    }
+
+    public boolean verificarAccesoComprador(String usuario, String contrasenia) throws LogException {
+        boolean loginSuccesfully = false;
+
+        for (Comprador comprador : listaCompradores) {
+            if (comprador.getUsuario().getUser().equals(usuario) && comprador.getUsuario().getContrasenia().equals(contrasenia)) {
+                loginSuccesfully = true;
+                break;
+            }
+        }
+        return loginSuccesfully;
+    }
+
+
+    //---------------------------fin login------------------------
     public ArrayList<Usuario> getListaUsuarios() {
         return listaUsuarios;
     }
@@ -111,4 +165,6 @@ public class Subasta implements ISubastaService {
     public void setListaAnunciantes(ArrayList<Anunciante> listaAnunciantes) {
         this.listaAnunciantes = listaAnunciantes;
     }
+
+
 }
